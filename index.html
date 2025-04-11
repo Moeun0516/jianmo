@@ -1,101 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cosmic Horizon</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>街友與收容制度測驗</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(ellipse at bottom, #0d0d2b 0%, #000000 100%);
-      color: white;
-      overflow-x: hidden;
-    }
-
-    header {
-      text-align: center;
-      padding: 3rem 1rem;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(6px);
-    }
-
-    h1 {
-      font-size: 3rem;
-      letter-spacing: 2px;
-    }
-
-    .stars {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: url('https://i.ibb.co/r7WbJ7v/stars.png') repeat;
-      z-index: -1;
-      animation: moveStars 100s linear infinite;
-    }
-
-    @keyframes moveStars {
-      0% { background-position: 0 0; }
-      100% { background-position: -10000px 5000px; }
-    }
-
-    .content {
-      max-width: 800px;
-      margin: 4rem auto;
-      padding: 0 2rem;
-      text-align: center;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      border-radius: 1rem;
-      margin-top: 2rem;
-      transition: transform 0.3s;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    .footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      opacity: 0.6;
-    }
+    body { font-family: Arial, sans-serif; margin: 30px; line-height: 1.6; }
+    .question { margin-bottom: 20px; }
+    .result { font-weight: bold; margin-top: 30px; }
+    button { padding: 10px 20px; font-size: 16px; }
   </style>
 </head>
 <body>
-  <div class="stars"></div>
 
-  <header>
-    <h1>Cosmic Horizon</h1>
-    <p>Explore the wonders beyond our world</p>
-  </header>
+  <h1>街友與收容制度小測驗</h1>
 
-  <section class="content">
-    <div class="card">
-      <h2>🚀 Launching to the Unknown</h2>
-      <p>Humanity's journey into the cosmos begins with curiosity and courage. Join the next chapter of exploration.</p>
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. 為何有些街友寧願選擇流浪，也不願進入安置機構？</p>
+      <label><input type="radio" name="q1" value="A"> 因為他們不喜歡吃機構的飯</label><br>
+      <label><input type="radio" name="q1" value="B"> 他們習慣群體生活</label><br>
+      <label><input type="radio" name="q1" value="C"> 安置機構的規範限制太多，失去自由</label><br>
+      <label><input type="radio" name="q1" value="D"> 他們希望住在偏遠地區</label>
     </div>
 
-    <div class="card">
-      <h2>🌌 Galactic Visions</h2>
-      <p>From star clusters to nebulae, the universe paints a canvas of infinite beauty and mystery.</p>
+    <div class="question">
+      <p>2. 哪一項不是安置機構的常見規定？</p>
+      <label><input type="radio" name="q2" value="A"> 不可攜帶危險物品</label><br>
+      <label><input type="radio" name="q2" value="B"> 必須參與社區服務</label><br>
+      <label><input type="radio" name="q2" value="C"> 需要遵守門禁時間</label><br>
+      <label><input type="radio" name="q2" value="D"> 不可辱罵社工與住民</label>
     </div>
 
-    <div class="card">
-      <h2>🛰️ Orbital Outposts</h2>
-      <p>Space stations, satellites, and future colonies—our steps into becoming a multiplanetary species.</p>
+    <div class="question">
+      <p>3. 以下哪一項是改善安置機構服務品質的可能做法？</p>
+      <label><input type="radio" name="q3" value="A"> 減少人力配置以節省資源</label><br>
+      <label><input type="radio" name="q3" value="B"> 設置更彈性的規範與個別化輔導</label><br>
+      <label><input type="radio" name="q3" value="C"> 移除所有作息規範</label><br>
+      <label><input type="radio" name="q3" value="D"> 關閉安置機構的娛樂設施</label>
     </div>
-  </section>
 
-  <div class="footer">
-    &copy; 2025 Cosmic Horizon. All rights reserved.
-  </div>
+    <div class="question">
+      <p>4. 安置機構希望街友「脫遊」，這個意思是？</p>
+      <label><input type="radio" name="q4" value="A"> 永久入住安置機構</label><br>
+      <label><input type="radio" name="q4" value="B"> 離開城市前往鄉村生活</label><br>
+      <label><input type="radio" name="q4" value="C"> 成功恢復穩定生活並融入社會</label><br>
+      <label><input type="radio" name="q4" value="D"> 被強制送醫</label>
+    </div>
+
+    <div class="question">
+      <p>5. 下列哪一項最能提升街友對安置機構的接受度？</p>
+      <label><input type="radio" name="q5" value="A"> 提高入住費用</label><br>
+      <label><input type="radio" name="q5" value="B"> 增加監控與規範</label><br>
+      <label><input type="radio" name="q5" value="C"> 增設心理諮商與職業輔導</label><br>
+      <label><input type="radio" name="q5" value="D"> 強制要求每位街友戒酒</label>
+    </div>
+
+    <button type="button" onclick="calculateScore()">提交</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function calculateScore() {
+      const answers = {
+        q1: "C",
+        q2: "B",
+        q3: "B",
+        q4: "C",
+        q5: "C"
+      };
+
+      let score = 0;
+      let total = 5;
+
+      for (let q in answers) {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === answers[q]) {
+          score++;
+        }
+      }
+
+      let comment = "";
+      if (score === 5) comment = "🌟非常棒！你對街友議題理解深刻。";
+      else if (score >= 3) comment = "👍不錯喔！你對議題已有基本了解。";
+      else comment = "📘可以再加油，試著從不同角度理解街友處境。";
+
+      document.getElementById("result").innerHTML = `你的得分是 ${score} / ${total}<br>${comment}`;
+    }
+  </script>
+
 </body>
 </html>
