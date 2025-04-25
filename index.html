@@ -54,10 +54,23 @@
       return arr[Math.floor(Math.random() * arr.length)];
     }
 
+    function spinSlot(id, options, label, delay) {
+      let count = 0;
+      const element = document.getElementById(id);
+      const interval = setInterval(() => {
+        element.textContent = label + '：' + getRandom(options);
+        count++;
+        if (count > 20) {
+          clearInterval(interval);
+          element.textContent = label + '：' + getRandom(options);
+        }
+      }, 100);
+    }
+
     function drawSlot() {
-      document.getElementById('family').textContent = '家庭背景：' + getRandom(familyOptions);
-      document.getElementById('health').textContent = '健康狀況：' + getRandom(healthOptions);
-      document.getElementById('habit').textContent = '生活習慣：' + getRandom(habitOptions);
+      spinSlot('family', familyOptions, '家庭背景');
+      setTimeout(() => spinSlot('health', healthOptions, '健康狀況'), 500);
+      setTimeout(() => spinSlot('habit', habitOptions, '生活習慣'), 1000);
     }
   </script>
 </body>
