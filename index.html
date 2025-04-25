@@ -2,118 +2,63 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>街友與收容制度測驗</title>
+  <title>街友拉霸機</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 30px; line-height: 1.6; }
-    .question { display: none; margin-bottom: 20px; }
-    .active { display: block; }
-    button { padding: 10px 20px; font-size: 16px; margin-top: 10px; }
-    .result { font-weight: bold; margin-top: 30px; }
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: #f4f4f4;
+      padding: 50px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .slot {
+      font-size: 24px;
+      margin: 20px auto;
+      padding: 10px;
+      width: 80%;
+      max-width: 400px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
   </style>
 </head>
 <body>
-
-  <h1>街友與收容制度小測驗</h1>
-
-  <form id="quizForm">
-
-    <div class="question active" id="q1">
-      <p>1. 為何有些街友寧願選擇流浪，也不願進入安置機構？</p>
-      <label><input type="radio" name="q1" value="A"> 因為他們不喜歡吃機構的飯</label><br>
-      <label><input type="radio" name="q1" value="B"> 他們習慣群體生活</label><br>
-      <label><input type="radio" name="q1" value="C"> 安置機構的規範限制太多，失去自由</label><br>
-      <label><input type="radio" name="q1" value="D"> 他們希望住在偏遠地區</label><br>
-      <button type="button" onclick="nextQuestion(1)">下一題</button>
-    </div>
-
-    <div class="question" id="q2">
-      <p>2. 哪一項不是安置機構的常見規定？</p>
-      <label><input type="radio" name="q2" value="A"> 不可攜帶危險物品</label><br>
-      <label><input type="radio" name="q2" value="B"> 必須參與社區服務</label><br>
-      <label><input type="radio" name="q2" value="C"> 需要遵守門禁時間</label><br>
-      <label><input type="radio" name="q2" value="D"> 不可辱罵社工與住民</label><br>
-      <button type="button" onclick="nextQuestion(2)">下一題</button>
-    </div>
-
-    <div class="question" id="q3">
-      <p>3. 以下哪一項是改善安置機構服務品質的可能做法？</p>
-      <label><input type="radio" name="q3" value="A"> 減少人力配置以節省資源</label><br>
-      <label><input type="radio" name="q3" value="B"> 設置更彈性的規範與個別化輔導</label><br>
-      <label><input type="radio" name="q3" value="C"> 移除所有作息規範</label><br>
-      <label><input type="radio" name="q3" value="D"> 關閉安置機構的娛樂設施</label><br>
-      <button type="button" onclick="nextQuestion(3)">下一題</button>
-    </div>
-
-    <div class="question" id="q4">
-      <p>4. 安置機構希望街友「脫遊」，這個意思是？</p>
-      <label><input type="radio" name="q4" value="A"> 永久入住安置機構</label><br>
-      <label><input type="radio" name="q4" value="B"> 離開城市前往鄉村生活</label><br>
-      <label><input type="radio" name="q4" value="C"> 成功恢復穩定生活並融入社會</label><br>
-      <label><input type="radio" name="q4" value="D"> 被強制送醫</label><br>
-      <button type="button" onclick="nextQuestion(4)">下一題</button>
-    </div>
-
-    <div class="question" id="q5">
-      <p>5. 下列哪一項最能提升街友對安置機構的接受度？</p>
-      <label><input type="radio" name="q5" value="A"> 提高入住費用</label><br>
-      <label><input type="radio" name="q5" value="B"> 增加監控與規範</label><br>
-      <label><input type="radio" name="q5" value="C"> 增設心理諮商與職業輔導</label><br>
-      <label><input type="radio" name="q5" value="D"> 強制要求每位街友戒酒</label><br>
-      <button type="button" onclick="calculateScore()">查看結果</button>
-    </div>
-
-  </form>
-
-  <div class="result" id="result"></div>
+  <h1>街友拉霸機</h1>
+  <div class="slot" id="family">家庭背景：有無兒女有朋友</div>
+  <div class="slot" id="health">健康狀況：健康</div>
+  <div class="slot" id="habit">生活習慣：都不會</div>
+  <button onclick="drawSlot()">抽卡</button>
 
   <script>
-    function nextQuestion(current) {
-      const radios = document.getElementsByName(`q${current}`);
-      let answered = false;
-      for (let radio of radios) {
-        if (radio.checked) {
-          answered = true;
-          break;
-        }
-      }
+    const familyOptions = ['有無兒女有朋友', '無親友', '有兒女'];
+    const healthOptions = ['有慢性病', '有身心障礙', '健康'];
+    const habitOptions = ['有酗酒不抽煙', '無酗酒會抽煙', '都不會', '都會'];
 
-      if (!answered) {
-        alert("請先選擇一個答案！");
-        return;
-      }
-
-      document.getElementById(`q${current}`).classList.remove("active");
-      document.getElementById(`q${current + 1}`).classList.add("active");
+    function getRandom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
     }
 
-    function calculateScore() {
-      const answers = {
-        q1: "C",
-        q2: "B",
-        q3: "B",
-        q4: "C",
-        q5: "C"
-      };
-
-      let score = 0;
-      let total = 5;
-
-      for (let q in answers) {
-        const selected = document.querySelector(`input[name="${q}"]:checked`);
-        if (selected && selected.value === answers[q]) {
-          score++;
-        }
-      }
-
-      let comment = "";
-      if (score === 5) comment = "🌟非常棒！你對街友議題理解深刻。";
-      else if (score >= 3) comment = "👍不錯喔！你對議題已有基本了解。";
-      else comment = "📘可以再加油，試著從不同角度理解街友處境。";
-
-      document.getElementById("q5").classList.remove("active");
-      document.getElementById("result").innerHTML = `你的得分是 ${score} / ${total}<br>${comment}`;
+    function drawSlot() {
+      document.getElementById('family').textContent = '家庭背景：' + getRandom(familyOptions);
+      document.getElementById('health').textContent = '健康狀況：' + getRandom(healthOptions);
+      document.getElementById('habit').textContent = '生活習慣：' + getRandom(habitOptions);
     }
   </script>
-
 </body>
 </html>
